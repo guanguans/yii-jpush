@@ -1,0 +1,17 @@
+{
+    "name": "guanguans/yii-jpush",
+    "description": "Yii jpush.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "guanguans",
+            "email": "ityaozm@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Guanguans\\YiiJpush\\": "src"
+        }
+    }
+}
