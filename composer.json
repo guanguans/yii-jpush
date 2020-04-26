@@ -1,6 +1,18 @@
 {
     "name": "guanguans/yii-jpush",
-    "description": "Yii jpush.",
+    "keywords": [
+        "yii",
+        "jpush",
+        "极光",
+        "推送"
+    ],
+    "description": "适配于 Yii 的极光扩展包",
+    "support": {
+        "issues": "https://github.com/guanguans/yii-jpush/issues",
+        "source": "https://github.com/guanguans/yii-jpush"
+    },
+    "type": "library",
+    "minimum-stability": "dev",
     "license": "MIT",
     "authors": [
         {
@@ -8,10 +20,27 @@
             "email": "ityaozm@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "yiisoft/yii2": "~2.0",
+        "jpush/jpush": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7"
+    },
     "autoload": {
         "psr-4": {
             "Guanguans\\YiiJpush\\": "src"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Guanguans\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit --coverage-text --color=always --debug --verbose"
+    },
+    "scripts-descriptions": {
+        "test": "Run the phpunit test."
     }
 }
