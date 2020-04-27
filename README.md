@@ -7,6 +7,7 @@
 [![Build Status](https://travis-ci.org/guanguans/yii-jpush.svg?branch=master)](https://travis-ci.org/guanguans/yii-jpush)
 [![Build Status](https://scrutinizer-ci.com/g/guanguans/yii-jpush/badges/build.png?b=master)](https://scrutinizer-ci.com/g/guanguans/yii-jpush/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/guanguans/yii-jpush/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/guanguans/yii-jpush/?branch=master)
+[![codecov](https://codecov.io/gh/guanguans/yii-jpush/branch/master/graph/badge.svg)](https://codecov.io/gh/guanguans/yii-jpush)
 [![StyleCI](https://github.styleci.io/repos/258963285/shield?branch=master)](https://github.styleci.io/repos/258963285)
 [![Latest Stable Version](https://poser.pugx.org/guanguans/yii-jpush/v/stable)](https://packagist.org/packages/guanguans/yii-jpush)
 [![Total Downloads](https://poser.pugx.org/guanguans/yii-jpush/downloads)](https://packagist.org/packages/guanguans/yii-jpush)
