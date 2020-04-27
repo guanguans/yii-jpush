@@ -1,0 +1,29 @@
+language: php
+
+php:
+    - 5.6
+    - 7.0
+    - 7.1
+    - 7.2
+    - 7.3
+    - 7.4
+
+dist: trusty
+sudo: true
+
+before_script:
+    - composer self-update
+    - composer install --no-interaction --dev
+
+script:
+    - ./vendor/bin/phpunit --verbose --coverage-clover=coverage.xml
+
+after_script:
+    - bash <(curl -s https://codecov.io/bash)
+    - composer create-project guanguans/yii-jpush
+
+notifications:
+    email: true
+
+matrix:
+    fast_finish: true
