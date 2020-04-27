@@ -34,6 +34,9 @@ Yii2 配置文件 `config/main.php` 的 components 中添加:
         'class' => 'Guanguans\YiiJpush\Jpush',
         'appKey' => 'xxxxxxxxxxx',
         'masterSecret' => 'xxxxxxxxxxx',
+        'logFile' => './jpush.log', // 可选
+        'retryTimes' => 3, // 可选
+        'zone' => 'default', // 可选 [default, bj]
     ],
 	// ...
 ]
