@@ -16,6 +16,9 @@ return [
             'class' => 'Guanguans\YiiJpush\Jpush',
             'appKey' => 'xxxxxxxxxxx',
             'masterSecret' => 'xxxxxxxxxxx',
+            'logFile' => './jpush.log',
+            'retryTimes' => 3,
+            'zone' => 'default',
         ],
     ],
 ];

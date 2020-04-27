@@ -11,6 +11,7 @@
 namespace Guanguans\YiiJpush;
 
 use JPush\Client;
+use JPush\Config;
 use yii\base\Component;
 
 /**
@@ -22,7 +23,21 @@ class Jpush extends Component
 
     public $masterSecret;
 
-    public $client;
+    public $logFile = Config::DEFAULT_LOG_FILE;
+
+    public $retryTimes = Config::DEFAULT_MAX_RETRY_TIMES;
+
+    public $zone = null;
+
+    protected $client;
+
+    /**
+     * @return mixed
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
 
     /**
      * Initializes the object.
@@ -31,6 +46,6 @@ class Jpush extends Component
     public function init()
     {
         parent::init();
-        $this->client = new Client($this->appKey, $this->masterSecret);
+        $this->client = new Client($this->appKey, $this->masterSecret, $this->logFile, $this->retryTimes, $this->zone);
     }
 }

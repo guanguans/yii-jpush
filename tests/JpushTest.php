@@ -26,5 +26,6 @@ class JpushTest extends TestCase
     public function testGetClient()
     {
         $this->assertInstanceOf(Client::class, $this->jpush->client);
+        $this->assertInstanceOf(Client::class, $this->jpush->getClient());
     }
 }
