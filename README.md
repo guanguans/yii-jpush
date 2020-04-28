@@ -1,6 +1,6 @@
 <h1 align="center">yii-jpush</h1>
 
-<p align="center">适配于 Yii 的极光扩展包</p>
+<p align="center">适配于 Yii 的极光推送扩展包</p>
 
 <p align="center"><img src="./docs/usage.png"></p>
 

@@ -12,7 +12,9 @@ namespace Guanguans\YiiJpush;
 
 use JPush\Client;
 use JPush\Config;
+use Yii;
 use yii\base\Component;
+use yii\base\UnknownMethodException;
 
 /**
  * Class Jpush.
@@ -27,9 +29,22 @@ class Jpush extends Component
 
     public $retryTimes = Config::DEFAULT_MAX_RETRY_TIMES;
 
-    public $zone = null;
+    public $zone;
 
     protected $client;
+
+    /**
+     * Initializes the object.
+     * This method is invoked at the end of the constructor after the object is initialized with the given configuration.
+     *
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function init()
+    {
+        parent::init();
+
+        $this->client = Yii::createObject(Client::class, [$this->appKey, $this->masterSecret, $this->logFile, $this->retryTimes, $this->zone]);
+    }
 
     /**
      * @return mixed
@@ -40,12 +55,17 @@ class Jpush extends Component
     }
 
     /**
-     * Initializes the object.
-     * This method is invoked at the end of the constructor after the object is initialized with the given configuration.
+     * @param string $method
+     * @param array  $arguments
+     *
+     * @return mixed
      */
-    public function init()
+    public function __call($method, $arguments)
     {
-        parent::init();
-        $this->client = new Client($this->appKey, $this->masterSecret, $this->logFile, $this->retryTimes, $this->zone);
+        if (!method_exists($this->client, $method)) {
+            throw new UnknownMethodException(sprintf('Method does not exist. : %s', $method));
+        }
+
+        return call_user_func_array([$this->client, $method], $arguments);
     }
 }
