@@ -36,7 +36,7 @@ class JpushTest extends TestCase
 
     public function testInvalidMethod()
     {
-        $method = 'moc_method';
+        $method = 'mock_method';
         $this->expectException(UnknownMethodException::class);
         $this->expectExceptionMessage(sprintf('Method does not exist. : %s', $method));
         $this->jpush->$method();
