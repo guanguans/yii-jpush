@@ -29,8 +29,8 @@ Yii2 配置文件 `config/main.php` 的 components 中添加:
 
 ``` php
 'components' => [
-	// ...
-	'jpush' => [
+    // ...
+    'jpush' => [
         'class' => 'Guanguans\YiiJpush\Jpush',
         'appKey' => 'xxxxxxxxxxx',
         'masterSecret' => 'xxxxxxxxxxx',
@@ -38,7 +38,7 @@ Yii2 配置文件 `config/main.php` 的 components 中添加:
         'retryTimes' => 3, // 可选
         'zone' => 'default', // 可选 [default, bj]
     ],
-	// ...
+    // ...
 ]
 ```
 
