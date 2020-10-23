@@ -75,6 +75,7 @@ class Jpush extends Component
         $resolver->setAllowedTypes('retryTimes', 'int');
         $resolver->setAllowedTypes('appKey', 'string');
         $resolver->setAllowedTypes('masterSecret', 'string');
+        $resolver->setAllowedValues('zone', [null, 'default', 'bj']);
     }
 
     public function setOptions(array $options)
