@@ -34,6 +34,14 @@ class JpushTest extends TestCase
         $this->assertInstanceOf(Client::class, $this->jpush->getClient());
     }
 
+    public function testSetOptions()
+    {
+        $this->jpush->setOptions($mockOptions = [
+            'mock_key' => 'mock_value',
+        ]);
+        $this->assertSame($mockOptions, $this->jpush->getOptions());
+    }
+
     public function testInvalidMethod()
     {
         $method = 'mock_method';
