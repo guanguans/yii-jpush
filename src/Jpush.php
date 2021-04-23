@@ -10,6 +10,7 @@
 
 namespace Guanguans\YiiJpush;
 
+use Closure;
 use Guanguans\YiiJpush\Traits\Macroable;
 use JPush\Client;
 use JPush\Config;
@@ -25,18 +26,39 @@ class Jpush extends Component
 {
     use Macroable;
 
+    /**
+     * @var string
+     */
     public $appKey;
 
+    /**
+     * @var string
+     */
     public $masterSecret;
 
+    /**
+     * @var string
+     */
     public $logFile = Config::DEFAULT_LOG_FILE;
 
+    /**
+     * @var int
+     */
     public $retryTimes = Config::DEFAULT_MAX_RETRY_TIMES;
 
+    /**
+     * @var string|null
+     */
     public $zone;
 
+    /**
+     * @var array
+     */
     protected $options = [];
 
+    /**
+     * @var \JPush\Client
+     */
     protected $client;
 
     /**
@@ -49,9 +71,7 @@ class Jpush extends Component
     {
         parent::init();
 
-        $resolver = new OptionsResolver();
-        $this->configureOptions($resolver);
-        $this->options = $resolver->resolve([
+        $this->setOptions([
             'appKey' => $this->appKey,
             'masterSecret' => $this->masterSecret,
             'logFile' => $this->logFile,
@@ -62,25 +82,37 @@ class Jpush extends Component
         $this->client = Yii::createObject(Client::class, [$this->appKey, $this->masterSecret, $this->logFile, $this->retryTimes, $this->zone]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    /**
+     * Configuration options.
+     *
+     * @return array
+     */
+    protected function configureOptions(array $options, Closure $closure)
     {
-        $resolver->setDefaults([
-            'appKey' => $this->appKey,
-            'masterSecret' => $this->masterSecret,
-            'logFile' => $this->logFile,
-            'retryTimes' => $this->retryTimes,
-            'zone' => $this->zone,
-        ]);
-        $resolver->setRequired(['appKey', 'masterSecret']);
-        $resolver->setAllowedTypes('retryTimes', 'int');
-        $resolver->setAllowedTypes('appKey', 'string');
-        $resolver->setAllowedTypes('masterSecret', 'string');
-        $resolver->setAllowedValues('zone', [null, 'default', 'bj']);
+        $resolver = new OptionsResolver();
+
+        $closure($resolver);
+
+        return $resolver->resolve($options);
     }
 
     public function setOptions(array $options)
     {
-        $this->options = $options;
+        $this->options = $this->configureOptions($options, function (OptionsResolver $resolver) {
+            $resolver->setDefaults([
+                'appKey' => $this->appKey,
+                'masterSecret' => $this->masterSecret,
+                'logFile' => $this->logFile,
+                'retryTimes' => $this->retryTimes,
+                'zone' => $this->zone,
+            ]);
+            $resolver->setRequired(['appKey', 'masterSecret']);
+            $resolver->setAllowedTypes('retryTimes', 'int');
+            $resolver->setAllowedTypes('logFile', 'int');
+            $resolver->setAllowedTypes('appKey', 'string');
+            $resolver->setAllowedTypes('masterSecret', 'string');
+            $resolver->setAllowedValues('zone', [null, 'default', 'bj']);
+        });
     }
 
     /**
