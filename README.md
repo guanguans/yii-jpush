@@ -20,7 +20,7 @@
 ## 安装
 
 ``` shell
-$ composer require guanguans/yii-jpush -v
+$ composer require guanguans/yii-jpush --prefer-dist -v
 ```
 
 ## 配置
